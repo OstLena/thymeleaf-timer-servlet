@@ -60,8 +60,8 @@ public class TimeServlet extends HttpServlet {
         String timezone = req.getParameter("timezone");
         String zoneId;
         if (timezone != null) {
-            zoneId = timezone;
-            resp.addCookie(new Cookie("timezone", timezone));
+            zoneId = timezone.replace(" ", "+");
+            resp.addCookie(new Cookie("timezone", zoneId));
         } else {
             String timezoneFromCookies = readTimezoneFromCookies(req);
             if (timezoneFromCookies != null) {
